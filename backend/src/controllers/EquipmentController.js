@@ -5,8 +5,8 @@ class EquipmentController {
 
   async getEquipment(req, res) {
     try {
-      const { date, city } = req.query;
-      const result = await this.equipmentService.getEquipmentData(date, city);
+      const { startDate, endDate, city } = req.query;
+      const result = await this.equipmentService.getEquipmentData(startDate, endDate, city);
       res.status(200).json({
         success: true,
         data: result

@@ -5,9 +5,9 @@ class EquipmentService {
     this.equipmentRepository = equipmentRepository;
   }
 
-  async getEquipmentData(date, city) {
+  async getEquipmentData(startDate, endDate, city) {
     try {
-      const data = await this.equipmentRepository.findByDateAndCity(date, city);
+      const data = await this.equipmentRepository.findByDateRangeAndCity(startDate, endDate, city);
       const summary = this.equipmentRepository.calculateAverages(data);
       
       return {

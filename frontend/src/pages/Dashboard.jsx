@@ -1,74 +1,42 @@
-import React, { useState, useEffect } from "react";
-import {
-  getEquipmentData,
-  getCities,
-  getWeatherData,
-  getSiteIds,
-} from "../services/services";
+import React from "react";
 import EquipmentFilters from "../components/EquipmentFilters";
 import EquipmentSummary from "../components/EquipmentSummary";
 import EquipmentTable from "../components/EquipmentTable";
 import WeatherFilters from "../components/WeatherFilters";
 import WeatherChart from "../components/WeatherChart";
+import CSVUpload from "../components/CSVUpload"; // ← Add this
+import useDashboard from "../hooks/useDashboard";
 
 const Dashboard = () => {
-  const [equipmentData, setEquipmentData] = useState(null);
-  const [cities, setCities] = useState([]);
-  const [selectedCity, setSelectedCity] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
-  const [weatherData, setWeatherData] = useState(null);
-  const [sites, setSites] = useState([]);
-  const [selectedSites, setSelectedSites] = useState([]);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [showTemp, setShowTemp] = useState(true);
-  const [showHumidity, setShowHumidity] = useState(false);
-  const [equipmentLoading, setEquipmentLoading] = useState(false);
-  const [weatherLoading, setWeatherLoading] = useState(false);
-  useEffect(() => {
-    getCities()
-      .then((res) => setCities(res.data))
-      .catch((err) => console.error("Error fetching cities:", err));
-  }, []);
-  useEffect(() => {
-    getSiteIds()
-      .then((res) => setSites(res.data))
-      .catch((err) => console.error("Error fetching sites:", err));
-  }, []);
+  const {
+    equipmentData,
+    cities,
+    selectedCity,
+    setSelectedCity,
+    equipmentStartDate,
+    setEquipmentStartDate,
+    equipmentEndDate,
+    setEquipmentEndDate,
 
-  useEffect(() => {
-    setEquipmentLoading(true);
-    getEquipmentData(selectedDate, selectedCity)
-      .then((res) => setEquipmentData(res.data))
-      .catch((err) => console.error("Error fetching equipment:", err))
-      .finally(() => setEquipmentLoading(false));
-  }, [selectedCity, selectedDate]);
-  useEffect(() => {
-    setWeatherLoading(true);
-    getWeatherData(startDate, endDate, selectedSites)
-      .then((res) => setWeatherData(res.data))
-      .catch((err) => console.error("Error fetching weather:", err))
-      .finally(() => setWeatherLoading(false));
-  }, [selectedSites, startDate, endDate]);
-
-  const handleSiteToggle = (siteId) => {
-    setSelectedSites((prev) =>
-      prev.includes(siteId)
-        ? prev.filter((id) => id !== siteId)
-        : [...prev, siteId]
-    );
-  };
-
-  const clearEquipmentFilters = () => {
-    setSelectedCity("");
-    setSelectedDate("");
-  };
-
-  const clearWeatherFilters = () => {
-    setStartDate("");
-    setEndDate("");
-    setSelectedSites([]);
-  };
+    equipmentLoading,
+    clearEquipmentFilters,
+    fetchEquipmentData, // ← Add refresh function
+    weatherData,
+    sites,
+    selectedSites,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    showTemp,
+    setShowTemp,
+    showHumidity,
+    setShowHumidity,
+    weatherLoading,
+    handleSiteToggle,
+    clearWeatherFilters,
+    fetchWeatherData, // ← Add refresh function
+  } = useDashboard();
 
   return (
     <div className="min-h-screen bg-[#000000] text-[#FFE8DB]">
@@ -82,14 +50,20 @@ const Dashboard = () => {
       </header>
 
       <div className="p-8 space-y-8">
+        {/* Equipment Section */}
         <section className="bg-[#0a0a0a] rounded-lg p-6 border border-[#2a2a2a] shadow-xl">
           <h2 className="text-2xl font-semibold text-[#FFE8DB] mb-6">
             Equipment Summary
           </h2>
 
+          {/* Upload Component */}
+          <CSVUpload type="equipment" onUploadSuccess={fetchEquipmentData} />
+
           <EquipmentFilters
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
+            equipmentStartDate={equipmentStartDate}
+            setEquipmentStartDate={setEquipmentStartDate}
+            equipmentEndDate={equipmentEndDate}
+            setEquipmentEndDate={setEquipmentEndDate}
             selectedCity={selectedCity}
             setSelectedCity={setSelectedCity}
             cities={cities}
@@ -106,10 +80,14 @@ const Dashboard = () => {
           ) : null}
         </section>
 
+        {/* Weather Section */}
         <section className="bg-[#0a0a0a] rounded-lg p-6 border border-[#2a2a2a] shadow-xl">
           <h2 className="text-2xl font-semibold text-[#FFE8DB] mb-6">
             Weather Analytics
           </h2>
+
+          {/* Upload Component */}
+          <CSVUpload type="weather" onUploadSuccess={fetchWeatherData} />
 
           <WeatherFilters
             startDate={startDate}

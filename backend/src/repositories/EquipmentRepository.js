@@ -2,12 +2,27 @@ class EquipmentRepository {
   constructor(equipmentModel) {
     this.Equipment = equipmentModel;
   }
-  async findByDateAndCity(date, city) {
+
+  async findByDateRangeAndCity(startDate, endDate, city) {
     const filter = {};
-    if (date) filter.date = new Date(date);
-    if (city) filter.city = city;
-    return await this.Equipment.find(filter);
+    if (startDate && endDate) {
+      filter.date = { 
+        $gte: new Date(startDate), 
+        $lte: new Date(endDate) 
+      };
+    } else if (startDate) {
+      filter.date = { $gte: new Date(startDate) };
+    } else if (endDate) {
+      filter.date = { $lte: new Date(endDate) };
+    }
+    
+    if (city) {
+      filter.city = city;
+    }
+    
+    return await this.Equipment.find(filter).sort({ date: 1 });
   }
+
   calculateAverages(data) {
     if (data.length === 0) {
       return { avgCapacity: 0, avgUnits: 0, avgEfficiency: 0 };
@@ -23,6 +38,7 @@ class EquipmentRepository {
       avgEfficiency: parseFloat(avgEfficiency.toFixed(2)) 
     };
   }
+
   async getUniqueCities() {
     return await this.Equipment.distinct('city');
   }

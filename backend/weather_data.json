@@ -1,0 +1,402 @@
+[
+  {
+    "siteId": 142027,
+    "city": "Mumbai",
+    "temperature": 28.51,
+    "humidity": 70.75,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 142027,
+    "city": "Mumbai",
+    "temperature": 29.34,
+    "humidity": 68.92,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 142027,
+    "city": "Mumbai",
+    "temperature": 27.89,
+    "humidity": 72.15,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 142027,
+    "city": "Mumbai",
+    "temperature": 30.12,
+    "humidity": 66.48,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 142027,
+    "city": "Mumbai",
+    "temperature": 31.45,
+    "humidity": 64.23,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  },
+  {
+    "siteId": 165297,
+    "city": "Delhi",
+    "temperature": 18.67,
+    "humidity": 58.34,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 165297,
+    "city": "Delhi",
+    "temperature": 19.23,
+    "humidity": 56.78,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 165297,
+    "city": "Delhi",
+    "temperature": 17.89,
+    "humidity": 61.45,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 165297,
+    "city": "Delhi",
+    "temperature": 20.45,
+    "humidity": 54.89,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 165297,
+    "city": "Delhi",
+    "temperature": 21.12,
+    "humidity": 52.34,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  },
+  {
+    "siteId": 539932,
+    "city": "Bangalore",
+    "temperature": 23.45,
+    "humidity": 75.67,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 539932,
+    "city": "Bangalore",
+    "temperature": 24.12,
+    "humidity": 73.89,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 539932,
+    "city": "Bangalore",
+    "temperature": 22.78,
+    "humidity": 77.23,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 539932,
+    "city": "Bangalore",
+    "temperature": 25.34,
+    "humidity": 71.45,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 539932,
+    "city": "Bangalore",
+    "temperature": 26.01,
+    "humidity": 69.78,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  },
+  {
+    "siteId": 558085,
+    "city": "Chennai",
+    "temperature": 32.67,
+    "humidity": 78.34,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 558085,
+    "city": "Chennai",
+    "temperature": 33.12,
+    "humidity": 76.89,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 558085,
+    "city": "Chennai",
+    "temperature": 31.89,
+    "humidity": 80.12,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 558085,
+    "city": "Chennai",
+    "temperature": 34.23,
+    "humidity": 74.56,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 558085,
+    "city": "Chennai",
+    "temperature": 35.01,
+    "humidity": 72.34,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  },
+  {
+    "siteId": 585232,
+    "city": "Kolkata",
+    "temperature": 26.45,
+    "humidity": 82.67,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 585232,
+    "city": "Kolkata",
+    "temperature": 27.12,
+    "humidity": 81.23,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 585232,
+    "city": "Kolkata",
+    "temperature": 25.78,
+    "humidity": 84.56,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 585232,
+    "city": "Kolkata",
+    "temperature": 28.34,
+    "humidity": 79.89,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 585232,
+    "city": "Kolkata",
+    "temperature": 29.01,
+    "humidity": 77.45,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  },
+  {
+    "siteId": 596092,
+    "city": "Hyderabad",
+    "temperature": 24.78,
+    "humidity": 65.34,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 596092,
+    "city": "Hyderabad",
+    "temperature": 25.45,
+    "humidity": 63.78,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 596092,
+    "city": "Hyderabad",
+    "temperature": 23.89,
+    "humidity": 67.23,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 596092,
+    "city": "Hyderabad",
+    "temperature": 26.12,
+    "humidity": 61.56,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 596092,
+    "city": "Hyderabad",
+    "temperature": 27.34,
+    "humidity": 59.89,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  },
+  {
+    "siteId": 621453,
+    "city": "Pune",
+    "temperature": 22.34,
+    "humidity": 68.45,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 621453,
+    "city": "Pune",
+    "temperature": 23.12,
+    "humidity": 66.89,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 621453,
+    "city": "Pune",
+    "temperature": 21.78,
+    "humidity": 70.23,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 621453,
+    "city": "Pune",
+    "temperature": 24.45,
+    "humidity": 64.67,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 621453,
+    "city": "Pune",
+    "temperature": 25.01,
+    "humidity": 62.34,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  },
+  {
+    "siteId": 734821,
+    "city": "Ahmedabad",
+    "temperature": 27.56,
+    "humidity": 55.78,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 734821,
+    "city": "Ahmedabad",
+    "temperature": 28.23,
+    "humidity": 53.45,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 734821,
+    "city": "Ahmedabad",
+    "temperature": 26.89,
+    "humidity": 57.12,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 734821,
+    "city": "Ahmedabad",
+    "temperature": 29.34,
+    "humidity": 51.89,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 734821,
+    "city": "Ahmedabad",
+    "temperature": 30.12,
+    "humidity": 49.56,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  },
+  {
+    "siteId": 856234,
+    "city": "Jaipur",
+    "temperature": 19.45,
+    "humidity": 48.23,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 856234,
+    "city": "Jaipur",
+    "temperature": 20.12,
+    "humidity": 46.78,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 856234,
+    "city": "Jaipur",
+    "temperature": 18.78,
+    "humidity": 50.45,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 856234,
+    "city": "Jaipur",
+    "temperature": 21.34,
+    "humidity": 44.89,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 856234,
+    "city": "Jaipur",
+    "temperature": 22.01,
+    "humidity": 42.56,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  },
+  {
+    "siteId": 923415,
+    "city": "Lucknow",
+    "temperature": 20.67,
+    "humidity": 62.34,
+    "date": "2024-01-01",
+    "timestamp": "2024-01-01T00:00:00"
+  },
+  {
+    "siteId": 923415,
+    "city": "Lucknow",
+    "temperature": 21.34,
+    "humidity": 60.78,
+    "date": "2024-01-02",
+    "timestamp": "2024-01-02T00:00:00"
+  },
+  {
+    "siteId": 923415,
+    "city": "Lucknow",
+    "temperature": 19.89,
+    "humidity": 64.23,
+    "date": "2024-01-03",
+    "timestamp": "2024-01-03T00:00:00"
+  },
+  {
+    "siteId": 923415,
+    "city": "Lucknow",
+    "temperature": 22.45,
+    "humidity": 58.67,
+    "date": "2024-01-04",
+    "timestamp": "2024-01-04T00:00:00"
+  },
+  {
+    "siteId": 923415,
+    "city": "Lucknow",
+    "temperature": 23.12,
+    "humidity": 56.34,
+    "date": "2024-01-05",
+    "timestamp": "2024-01-05T00:00:00"
+  }
+]

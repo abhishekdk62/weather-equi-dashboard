@@ -34,13 +34,7 @@ class EquipmentRepository {
     };
   }
 
-  async insertMany(equipmentData) {
-    return await this.Equipment.insertMany(equipmentData);
-  }
 
-  async deleteAll() {
-    return await this.Equipment.deleteMany({});
-  }
 
   async getUniqueCities() {
     return await this.Equipment.distinct('city');

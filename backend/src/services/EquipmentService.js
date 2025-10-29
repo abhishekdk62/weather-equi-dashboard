@@ -26,14 +26,6 @@ class EquipmentService {
     }
   }
 
-  async seedData(equipmentData) {
-    try {
-      await this.equipmentRepository.deleteAll();
-      return await this.equipmentRepository.insertMany(equipmentData);
-    } catch (error) {
-      throw new Error(`Seed Error: ${error.message}`);
-    }
-  }
 }
 
 module.exports = EquipmentService;

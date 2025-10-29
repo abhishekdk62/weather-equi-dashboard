@@ -36,14 +36,6 @@ class WeatherService {
     }
   }
 
-  async seedData(weatherData) {
-    try {
-      await this.weatherRepository.deleteAll();
-      return await this.weatherRepository.insertMany(weatherData);
-    } catch (error) {
-      throw new Error(`Seed Error: ${error.message}`);
-    }
-  }
 }
 
 module.exports = WeatherService;

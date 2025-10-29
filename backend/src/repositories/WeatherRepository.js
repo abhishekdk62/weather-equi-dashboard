@@ -51,14 +51,6 @@ class WeatherRepository {
     }));
   }
 
-  async insertMany(weatherData) {
-    return await this.Weather.insertMany(weatherData);
-  }
-
-  async deleteAll() {
-    return await this.Weather.deleteMany({});
-  }
-
   async getUniqueSiteIds() {
     return await this.Weather.distinct('siteId');
   }

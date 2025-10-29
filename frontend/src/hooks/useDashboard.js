@@ -98,40 +98,41 @@ const useDashboard = () => {
   // ============ RETURN VALUES ============
 
   return {
-    // Equipment state
-    equipmentData,
-    cities,
-    selectedCity,
-    setSelectedCity,
-    equipmentStartDate,
-    setEquipmentStartDate,
-    equipmentEndDate,
-    setEquipmentEndDate,
-    equipmentLoading,
-    clearEquipmentFilters,
-    
-    // Weather state
-    weatherData,
-    sites,
-    selectedSites,
-    weatherStartDate,
-    setWeatherStartDate,
-    weatherEndDate,
-    setWeatherEndDate,
-    showTemp,
-    setShowTemp,
-    showHumidity,
-    setShowHumidity,
-    weatherLoading,
-    handleSiteToggle,
-    clearWeatherFilters,
-    
-    // Refresh functions
-    fetchEquipmentData,
-    fetchWeatherData,
-    fetchCities,  
-    fetchSites,  
-  };
+  // Equipment state
+  equipmentData,
+  cities,
+  selectedCity,
+  setSelectedCity,
+  equipmentStartDate,
+  setEquipmentStartDate,
+  equipmentEndDate,
+  setEquipmentEndDate,
+  equipmentLoading,
+  clearEquipmentFilters,
+  
+  // Weather state
+  weatherData,
+  sites,
+  selectedSites,
+  startDate: weatherStartDate,  // ← Add these aliases!
+  setStartDate: setWeatherStartDate,  // ← Add these aliases!
+  endDate: weatherEndDate,  // ← Add these aliases!
+  setEndDate: setWeatherEndDate,  // ← Add these aliases!
+  showTemp,
+  setShowTemp,
+  showHumidity,
+  setShowHumidity,
+  weatherLoading,
+  handleSiteToggle,
+  clearWeatherFilters,
+  
+  // Refresh functions
+  fetchEquipmentData,
+  fetchWeatherData,
+  fetchCities,  
+  fetchSites,  
+};
+
 };
 
 export default useDashboard;

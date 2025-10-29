@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const WeatherFilters = ({
   startDate,
@@ -14,6 +14,33 @@ const WeatherFilters = ({
   showHumidity,
   setShowHumidity
 }) => {
+  const today = new Date().toISOString().split('T')[0];
+  const [dateError, setDateError] = useState('');
+
+  const handleStartDateChange = (e) => {
+    const newStartDate = e.target.value;
+    setStartDate(newStartDate);
+    
+    // If end date is before new start date, clear end date and error
+    if (endDate && newStartDate > endDate) {
+      setEndDate('');
+      setDateError('');
+    }
+  };
+
+  const handleEndDateChange = (e) => {
+    const newEndDate = e.target.value;
+    
+    // Validate: end date must be >= start date
+    if (startDate && newEndDate < startDate) {
+      setDateError('End date cannot be before start date');
+      setEndDate(newEndDate); // Still set it to show the value
+    } else {
+      setDateError('');
+      setEndDate(newEndDate);
+    }
+  };
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
@@ -24,7 +51,8 @@ const WeatherFilters = ({
           <input
             type="date"
             value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            onChange={handleStartDateChange}
+            max={today}
             className="w-full px-4 py-2 bg-[#0f0f0f] border border-[#2a2a2a] rounded-lg text-[#FFE8DB] focus:outline-none focus:ring-2 focus:ring-[#5682B1] focus:border-transparent"
           />
         </div>
@@ -36,9 +64,18 @@ const WeatherFilters = ({
           <input
             type="date"
             value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            className="w-full px-4 py-2 bg-[#0f0f0f] border border-[#2a2a2a] rounded-lg text-[#FFE8DB] focus:outline-none focus:ring-2 focus:ring-[#5682B1] focus:border-transparent"
+            onChange={handleEndDateChange}
+            min={startDate}
+            max={today}
+            className={`w-full px-4 py-2 bg-[#0f0f0f] border ${
+              dateError ? 'border-red-500' : 'border-[#2a2a2a]'
+            } rounded-lg text-[#FFE8DB] focus:outline-none focus:ring-2 focus:ring-${
+              dateError ? 'red-500' : '[#5682B1]'
+            } focus:border-transparent`}
           />
+          {dateError && (
+            <p className="text-red-500 text-sm mt-1">{dateError}</p>
+          )}
         </div>
 
         <button
@@ -64,7 +101,7 @@ const WeatherFilters = ({
                   : 'bg-[#1a1a1a] border-[#2a2a2a] text-[#b8b8b8] hover:border-[#5682B1]'
               }`}
             >
-              {site}
+              Site {site}
             </button>
           ))}
         </div>

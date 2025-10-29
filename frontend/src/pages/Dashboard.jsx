@@ -20,7 +20,7 @@ const Dashboard = () => {
 
     equipmentLoading,
     clearEquipmentFilters,
-    fetchEquipmentData, // ← Add refresh function
+    fetchEquipmentData,
     weatherData,
     sites,
     selectedSites,

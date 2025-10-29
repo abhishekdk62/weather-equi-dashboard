@@ -2,15 +2,6 @@ class WeatherRepository {
   constructor(weatherModel) {
     this.Weather = weatherModel;
   }
-
-  async findAll() {
-    return await this.Weather.find();
-  }
-
-  async findByFilters(filters) {
-    return await this.Weather.find(filters).sort({ date: 1 });
-  }
-
   async findByDateRangeAndSites(startDate, endDate, siteIds) {
     const filter = {};
     
@@ -27,10 +18,8 @@ class WeatherRepository {
     
     return await this.Weather.find(filter).sort({ date: 1 });
   }
-
   calculateAveragesByDate(data) {
     const grouped = {};
-    
     data.forEach(record => {
       const dateKey = record.date.toISOString().split('T')[0];
       if (!grouped[dateKey]) {
@@ -50,7 +39,6 @@ class WeatherRepository {
       avgHumidity: parseFloat((group.humidities.reduce((a, b) => a + b, 0) / group.humidities.length).toFixed(2))
     }));
   }
-
   async getUniqueSiteIds() {
     return await this.Weather.distinct('siteId');
   }

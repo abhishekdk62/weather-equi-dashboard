@@ -2,22 +2,12 @@ class EquipmentRepository {
   constructor(equipmentModel) {
     this.Equipment = equipmentModel;
   }
-
-  async findAll() {
-    return await this.Equipment.find();
-  }
-
-  async findByFilters(filters) {
-    return await this.Equipment.find(filters);
-  }
-
   async findByDateAndCity(date, city) {
     const filter = {};
     if (date) filter.date = new Date(date);
     if (city) filter.city = city;
     return await this.Equipment.find(filter);
   }
-
   calculateAverages(data) {
     if (data.length === 0) {
       return { avgCapacity: 0, avgUnits: 0, avgEfficiency: 0 };
@@ -33,9 +23,6 @@ class EquipmentRepository {
       avgEfficiency: parseFloat(avgEfficiency.toFixed(2)) 
     };
   }
-
-
-
   async getUniqueCities() {
     return await this.Equipment.distinct('city');
   }

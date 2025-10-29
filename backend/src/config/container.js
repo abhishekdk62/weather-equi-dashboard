@@ -12,21 +12,15 @@ class Container {
     this._services = {};
     this._registerServices();
   }
-
   _registerServices() {
-    // Register Repositories
     this._services.equipmentRepository = new EquipmentRepository(Equipment);
     this._services.weatherRepository = new WeatherRepository(Weather);
-
-    // Register Services
     this._services.equipmentService = new EquipmentService(
       this._services.equipmentRepository
     );
     this._services.weatherService = new WeatherService(
       this._services.weatherRepository
     );
-
-    // Register Controllers
     this._services.equipmentController = new EquipmentController(
       this._services.equipmentService
     );
@@ -34,7 +28,6 @@ class Container {
       this._services.weatherService
     );
   }
-
   get(serviceName) {
     if (!this._services[serviceName]) {
       throw new Error(`Service ${serviceName} not found in container`);
@@ -42,7 +35,5 @@ class Container {
     return this._services[serviceName];
   }
 }
-
-// Create and export singleton container instance
 const container = new Container();
 module.exports = container;

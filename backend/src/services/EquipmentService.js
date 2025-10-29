@@ -17,7 +17,7 @@ class EquipmentService {
       throw new Error(`Equipment Service Error: ${error.message}`);
     }
   }
-
+ 
   async getAllCities() {
     try {
       return await this.equipmentRepository.getUniqueCities();

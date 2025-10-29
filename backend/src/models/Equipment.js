@@ -12,4 +12,12 @@ const equipmentSchema = new mongoose.Schema({
   date: { type: Date, required: true }
 }, { timestamps: true });
 
+// Compound unique index to prevent duplicates
+equipmentSchema.index({ name: 1, city: 1, date: 1 }, { unique: true });
+
+// Indexes for faster queries
+equipmentSchema.index({ city: 1 });
+equipmentSchema.index({ date: 1 });
+equipmentSchema.index({ city: 1, date: 1 });
+
 module.exports = mongoose.model('Equipment', equipmentSchema);

@@ -1,3 +1,5 @@
+const csvValidator = require('../utils/csvValidator');
+
 class WeatherService {
   constructor(weatherRepository) {
     this.weatherRepository = weatherRepository;
@@ -35,6 +37,33 @@ class WeatherService {
     }
   }
 
+  // NEW: Upload CSV
+  async uploadCSV(filePath) {
+    try {
+      // Validate and parse CSV
+      const data = await csvValidator.validateAndParseWeather(filePath);
+      
+      // Bulk upsert to avoid duplicates
+      const bulkOps = data.map(item => ({
+        updateOne: {
+          filter: { siteId: item.siteId, date: item.date },
+          update: { $set: item },
+          upsert: true
+        }
+      }));
+
+      const result = await this.weatherRepository.Weather.bulkWrite(bulkOps, { ordered: false });
+      
+      return {
+        success: true,
+        inserted: result.upsertedCount,
+        updated: result.modifiedCount,
+        total: data.length
+      };
+    } catch (error) {
+      throw new Error(`CSV Upload Error: ${error.message}`);
+    }
+  }
 }
 
 module.exports = WeatherService;

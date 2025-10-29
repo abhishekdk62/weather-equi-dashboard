@@ -9,4 +9,11 @@ const weatherSchema = new mongoose.Schema({
   timestamp: { type: Date, required: true }
 }, { timestamps: true });
 
+// Compound unique index to prevent duplicates
+weatherSchema.index({ siteId: 1, date: 1 }, { unique: true });
+
+// Indexes for faster queries
+weatherSchema.index({ siteId: 1 });
+weatherSchema.index({ date: 1 });
+
 module.exports = mongoose.model('Weather', weatherSchema);

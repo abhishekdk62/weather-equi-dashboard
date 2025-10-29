@@ -33,6 +33,31 @@ class EquipmentController {
       });
     }
   }
+
+  // NEW: Upload CSV
+  async uploadCSV(req, res) {
+    try {
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          message: 'No file uploaded'
+        });
+      }
+
+      const result = await this.equipmentService.uploadCSV(req.file.path);
+      
+      res.status(200).json({
+        success: true,
+        message: 'Equipment data uploaded successfully',
+        ...result
+      });
+    } catch (error) {
+      res.status(400).json({ 
+        success: false,
+        error: error.message 
+      });
+    }
+  }
 }
 
 module.exports = EquipmentController;

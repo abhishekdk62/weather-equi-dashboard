@@ -27,7 +27,7 @@ const WeatherChart = ({ weatherData, showTemp, showHumidity, loading }) => {
       return null;
     }
 
-    const labels = weatherData.data.map((item) => item.date);
+    const labels = weatherData.data.map((item) => item.date.split('T')[0]);
     const datasets = [];
 
     if (showTemp) {
@@ -39,6 +39,8 @@ const WeatherChart = ({ weatherData, showTemp, showHumidity, loading }) => {
         borderColor: '#5682B1',
         backgroundColor: 'rgba(86, 130, 177, 0.2)',
         tension: 0.4,
+        pointRadius: 4,
+        pointHoverRadius: 6,
       });
     }
 
@@ -46,9 +48,11 @@ const WeatherChart = ({ weatherData, showTemp, showHumidity, loading }) => {
       datasets.push({
         label: 'Humidity (%)',
         data: weatherData.data?.map((item) => item.humidity || item.avgHumidity),
-        borderColor: '#739EC9',
-        backgroundColor: 'rgba(115, 158, 201, 0.2)',
+        borderColor: '#FF8C00', // Orange color
+        backgroundColor: 'rgba(255, 140, 0, 0.2)', // Orange with transparency
         tension: 0.4,
+        pointRadius: 4,
+        pointHoverRadius: 6,
       });
     }
 
@@ -60,20 +64,60 @@ const WeatherChart = ({ weatherData, showTemp, showHumidity, loading }) => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
+        position: 'top',
         labels: {
           color: '#FFE8DB',
+          font: {
+            size: window.innerWidth < 768 ? 10 : 12,
+          },
+          padding: window.innerWidth < 768 ? 10 : 15,
+          usePointStyle: true,
+          pointStyle: 'circle',
         },
+      },
+      tooltip: {
+        enabled: true,
+        mode: 'index',
+        intersect: false,
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        titleColor: '#FFE8DB',
+        bodyColor: '#FFE8DB',
+        borderColor: '#2a2a2a',
+        borderWidth: 1,
       },
     },
     scales: {
       x: {
-        ticks: { color: '#b8b8b8' },
-        grid: { color: '#2a2a2a' },
+        ticks: { 
+          color: '#b8b8b8',
+          font: {
+            size: window.innerWidth < 768 ? 9 : 11,
+          },
+          maxRotation: window.innerWidth < 768 ? 45 : 0,
+          minRotation: window.innerWidth < 768 ? 45 : 0,
+        },
+        grid: { 
+          color: '#2a2a2a',
+          drawBorder: false,
+        },
       },
       y: {
-        ticks: { color: '#b8b8b8' },
-        grid: { color: '#2a2a2a' },
+        ticks: { 
+          color: '#b8b8b8',
+          font: {
+            size: window.innerWidth < 768 ? 9 : 11,
+          },
+        },
+        grid: { 
+          color: '#2a2a2a',
+          drawBorder: false,
+        },
       },
+    },
+    interaction: {
+      mode: 'nearest',
+      axis: 'x',
+      intersect: false,
     },
   };
 
@@ -81,25 +125,28 @@ const WeatherChart = ({ weatherData, showTemp, showHumidity, loading }) => {
 
   if (loading) {
     return (
-      <div className="text-center py-16 text-[#b8b8b8]">Loading chart...</div>
+      <div className="text-center py-12 md:py-16 text-[#b8b8b8] bg-[#0f0f0f] border border-[#2a2a2a] rounded-lg">
+        Loading chart...
+      </div>
     );
   }
 
   if (!chartData) {
     return (
-      <div className="text-center py-16 text-[#b8b8b8]">
+      <div className="text-center py-12 md:py-16 text-[#b8b8b8] bg-[#0f0f0f] border border-[#2a2a2a] rounded-lg">
         Select filters to view weather data
       </div>
     );
   }
 
   return (
-    <div className="bg-[#0f0f0f] border border-[#2a2a2a] rounded-lg p-6">
-      <div className="h-96">
+    <div className="bg-[#0f0f0f] border border-[#2a2a2a] rounded-lg p-4 md:p-6">
+      {/* Responsive height - smaller on mobile */}
+      <div className="h-64 sm:h-80 md:h-96">
         <Line data={chartData} options={chartOptions} />
       </div>
       {weatherData.isAveraged && (
-        <p className="text-center text-sm text-[#b8b8b8] mt-4">
+        <p className="text-center text-xs md:text-sm text-[#b8b8b8] mt-3 md:mt-4">
           Showing averaged data for {weatherData.siteCount} sites
         </p>
       )}

@@ -4,7 +4,7 @@ import EquipmentSummary from "../components/EquipmentSummary";
 import EquipmentTable from "../components/EquipmentTable";
 import WeatherFilters from "../components/WeatherFilters";
 import WeatherChart from "../components/WeatherChart";
-import CSVUpload from "../components/CSVUpload"; // ← Add this
+import CSVUpload from "../components/CSVUpload";
 import useDashboard from "../hooks/useDashboard";
 
 const Dashboard = () => {
@@ -17,7 +17,6 @@ const Dashboard = () => {
     setEquipmentStartDate,
     equipmentEndDate,
     setEquipmentEndDate,
-
     equipmentLoading,
     clearEquipmentFilters,
     fetchEquipmentData,
@@ -35,28 +34,29 @@ const Dashboard = () => {
     weatherLoading,
     handleSiteToggle,
     clearWeatherFilters,
-    fetchWeatherData, // ← Add refresh function
+    fetchWeatherData,
   } = useDashboard();
 
   return (
     <div className="min-h-screen bg-[#000000] text-[#FFE8DB]">
-      <header className="bg-[#5682B1] border-b border-[#2a2a2a] py-6 px-8 shadow-lg">
-        <h1 className="text-3xl font-bold text-[#FFE8DB]">
+      {/* Header - Responsive padding */}
+      <header className="bg-[#5682B1] border-b border-[#2a2a2a] py-4 px-4 md:py-6 md:px-8 shadow-lg">
+        <h1 className="text-2xl md:text-3xl font-bold text-[#FFE8DB]">
           Equipment & Weather Dashboard
         </h1>
-        <p className="text-[#FFE8DB] opacity-80 mt-1">
+        <p className="text-sm md:text-base text-[#FFE8DB] opacity-80 mt-1">
           Real-time analytics and monitoring system
         </p>
       </header>
 
-      <div className="p-8 space-y-8">
+      {/* Main content - Responsive padding */}
+      <div className="p-4 md:p-8 space-y-6 md:space-y-8">
         {/* Equipment Section */}
-        <section className="bg-[#0a0a0a] rounded-lg p-6 border border-[#2a2a2a] shadow-xl">
-          <h2 className="text-2xl font-semibold text-[#FFE8DB] mb-6">
+        <section className="bg-[#0a0a0a] rounded-lg p-4 md:p-6 border border-[#2a2a2a] shadow-xl">
+          <h2 className="text-xl md:text-2xl font-semibold text-[#FFE8DB] mb-4 md:mb-6">
             Equipment Summary
           </h2>
 
-          {/* Upload Component */}
           <CSVUpload type="equipment" onUploadSuccess={fetchEquipmentData} />
 
           <EquipmentFilters
@@ -81,12 +81,11 @@ const Dashboard = () => {
         </section>
 
         {/* Weather Section */}
-        <section className="bg-[#0a0a0a] rounded-lg p-6 border border-[#2a2a2a] shadow-xl">
-          <h2 className="text-2xl font-semibold text-[#FFE8DB] mb-6">
+        <section className="bg-[#0a0a0a] rounded-lg p-4 md:p-6 border border-[#2a2a2a] shadow-xl">
+          <h2 className="text-xl md:text-2xl font-semibold text-[#FFE8DB] mb-4 md:mb-6">
             Weather Analytics
           </h2>
 
-          {/* Upload Component */}
           <CSVUpload type="weather" onUploadSuccess={fetchWeatherData} />
 
           <WeatherFilters

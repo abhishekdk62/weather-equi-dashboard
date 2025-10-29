@@ -21,7 +21,6 @@ const WeatherFilters = ({
     const newStartDate = e.target.value;
     setStartDate(newStartDate);
     
-    // If end date is before new start date, clear end date and error
     if (endDate && newStartDate > endDate) {
       setEndDate('');
       setDateError('');
@@ -31,10 +30,9 @@ const WeatherFilters = ({
   const handleEndDateChange = (e) => {
     const newEndDate = e.target.value;
     
-    // Validate: end date must be >= start date
     if (startDate && newEndDate < startDate) {
       setDateError('End date cannot be before start date');
-      setEndDate(newEndDate); // Still set it to show the value
+      setEndDate(newEndDate);
     } else {
       setDateError('');
       setEndDate(newEndDate);
@@ -42,8 +40,9 @@ const WeatherFilters = ({
   };
 
   return (
-    <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+    <div className="space-y-4 md:space-y-6">
+      {/* Date Filters - Responsive Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <div>
           <label className="block text-sm font-medium text-[#b8b8b8] mb-2">
             Start Date
@@ -78,24 +77,28 @@ const WeatherFilters = ({
           )}
         </div>
 
-        <button
-          onClick={onClear}
-          className="px-6 py-2 bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#2a2a2a] rounded-lg text-[#5682B1] font-medium transition-colors self-end"
-        >
-          Clear Filters
-        </button>
+        {/* Clear button - full width on mobile, auto on larger screens */}
+        <div className="sm:col-span-2 lg:col-span-1 flex items-end">
+          <button
+            onClick={onClear}
+            className="w-full px-6 py-2 bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#2a2a2a] rounded-lg text-[#5682B1] font-medium transition-colors"
+          >
+            Clear Filters
+          </button>
+        </div>
       </div>
 
-      <div className="mb-6">
+      {/* Site Selection - Responsive Grid */}
+      <div>
         <label className="block text-sm font-medium text-[#b8b8b8] mb-3">
           Select Sites (Multiple)
         </label>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
           {sites?.map((site) => (
             <button
               key={site}
               onClick={() => handleSiteToggle(site)}
-              className={`px-4 py-2 rounded-lg border font-medium transition-all ${
+              className={`px-3 md:px-4 py-2 rounded-lg border font-medium text-sm transition-all ${
                 selectedSites.includes(site)
                   ? 'bg-[#5682B1] border-[#5682B1] text-[#FFE8DB] shadow-lg'
                   : 'bg-[#1a1a1a] border-[#2a2a2a] text-[#b8b8b8] hover:border-[#5682B1]'
@@ -107,29 +110,35 @@ const WeatherFilters = ({
         </div>
       </div>
 
-      <div className="flex gap-4 mb-6">
-        <button
-          onClick={() => setShowTemp(!showTemp)}
-          className={`px-6 py-2 rounded-lg font-medium transition-all ${
-            showTemp
-              ? 'bg-[#5682B1] text-[#FFE8DB] shadow-lg'
-              : 'bg-[#1a1a1a] text-[#b8b8b8] border border-[#2a2a2a] hover:border-[#5682B1]'
-          }`}
-        >
-          Temperature
-        </button>
-        <button
-          onClick={() => setShowHumidity(!showHumidity)}
-          className={`px-6 py-2 rounded-lg font-medium transition-all ${
-            showHumidity
-              ? 'bg-[#739EC9] text-[#FFE8DB] shadow-lg'
-              : 'bg-[#1a1a1a] text-[#b8b8b8] border border-[#2a2a2a] hover:border-[#739EC9]'
-          }`}
-        >
-          Humidity
-        </button>
+      {/* Temperature and Humidity Toggles - Full width on mobile, auto on large screens */}
+      <div>
+        <label className="block text-sm font-medium text-[#b8b8b8] mb-3">
+          Data Display
+        </label>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <button
+            onClick={() => setShowTemp(!showTemp)}
+            className={`w-full lg:w-auto px-6 py-2 rounded-lg font-medium transition-all ${
+              showTemp
+                ? 'bg-[#5682B1] text-[#FFE8DB] shadow-lg'
+                : 'bg-[#1a1a1a] text-[#b8b8b8] border border-[#2a2a2a] hover:border-[#5682B1]'
+            }`}
+          >
+            Temperature
+          </button>
+          <button
+            onClick={() => setShowHumidity(!showHumidity)}
+            className={`w-full lg:w-auto px-6 py-2 rounded-lg font-medium transition-all ${
+              showHumidity
+                ? 'bg-[#FF8C00] text-[#FFE8DB] shadow-lg'
+                : 'bg-[#1a1a1a] text-[#b8b8b8] border border-[#2a2a2a] hover:border-[#FF8C00]'
+            }`}
+          >
+            Humidity
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

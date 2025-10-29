@@ -8,7 +8,7 @@ const connectDB = require('./src/config/database');
 
 const app = express();
   
-app.use(cors());
+app.use(cors({origin:process.env.NODE_ENV=='dev'?process.env.DEV_URL:process.env.PROD_URL}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

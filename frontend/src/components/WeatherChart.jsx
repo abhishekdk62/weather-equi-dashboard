@@ -152,6 +152,6 @@ const WeatherChart = ({ weatherData, showTemp, showHumidity, loading }) => {
       )}
     </div>
   );
-};
+}; 
 
 export default WeatherChart;

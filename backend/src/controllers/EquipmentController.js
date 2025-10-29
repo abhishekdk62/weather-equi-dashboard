@@ -34,7 +34,6 @@ class EquipmentController {
     }
   }
 
-  // NEW: Upload CSV
   async uploadCSV(req, res) {
     try {
       if (!req.file) {

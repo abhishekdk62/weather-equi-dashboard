@@ -2,17 +2,12 @@ const csvtojson = require('csvtojson');
 const fs = require('fs');
 
 class CSVValidator {
-  // Validate Equipment CSV
   async validateAndParseEquipment(filePath) {
     try {
       const data = await csvtojson().fromFile(filePath);
-      
-      // Check if empty
       if (data.length === 0) {
         throw new Error('CSV file is empty');
       }
-      
-      // Required fields
       const requiredFields = ['name', 'city', 'capacity', 'efficiency', 'units', 'status', 'date'];
       const firstRow = data[0];
       const missingFields = requiredFields.filter(field => !(field in firstRow));
@@ -20,26 +15,20 @@ class CSVValidator {
       if (missingFields.length > 0) {
         throw new Error(`Missing required fields: ${missingFields.join(', ')}`);
       }
-
-      // Transform and validate each row
       const transformedData = data.map((row, index) => {
         const capacity = parseFloat(row.capacity);
         const efficiency = parseFloat(row.efficiency);
         const units = parseFloat(row.units);
-        
         if (isNaN(capacity) || isNaN(efficiency) || isNaN(units)) {
           throw new Error(`Invalid numeric values at row ${index + 2}`);
         }
-
         if (!['Active', 'Idle', 'Maintenance'].includes(row.status)) {
           throw new Error(`Invalid status at row ${index + 2}. Must be Active, Idle, or Maintenance`);
         }
-
         const date = new Date(row.date);
         if (isNaN(date.getTime())) {
           throw new Error(`Invalid date format at row ${index + 2}`);
         }
-
         return {
           name: row.name.trim(),
           city: row.city.trim(),
@@ -52,8 +41,6 @@ class CSVValidator {
           recommendation: row.recommendation || ''
         };
       });
-
-      // Delete temp file
       this.deleteFile(filePath);
       
       return transformedData;
@@ -63,46 +50,33 @@ class CSVValidator {
     }
   }
 
-  // Validate Weather CSV
   async validateAndParseWeather(filePath) {
     try {
       const data = await csvtojson().fromFile(filePath);
-      
-      // Check if empty
       if (data.length === 0) {
         throw new Error('CSV file is empty');
       }
-      
-      // Required fields
       const requiredFields = ['siteId', 'city', 'temperature', 'humidity', 'date', 'timestamp'];
       const firstRow = data[0];
       const missingFields = requiredFields.filter(field => !(field in firstRow));
-      
       if (missingFields.length > 0) {
         throw new Error(`Missing required fields: ${missingFields.join(', ')}`);
       }
-
-      // Transform and validate each row
       const transformedData = data.map((row, index) => {
         const siteId = parseInt(row.siteId);
         const temperature = parseFloat(row.temperature);
         const humidity = parseFloat(row.humidity);
-        
         if (isNaN(siteId) || isNaN(temperature) || isNaN(humidity)) {
           throw new Error(`Invalid numeric values at row ${index + 2}`);
         }
-
         if (humidity < 0 || humidity > 100) {
           throw new Error(`Invalid humidity value at row ${index + 2}. Must be between 0-100`);
         }
-
         const date = new Date(row.date);
         const timestamp = new Date(row.timestamp);
-        
         if (isNaN(date.getTime()) || isNaN(timestamp.getTime())) {
           throw new Error(`Invalid date/timestamp format at row ${index + 2}`);
         }
-
         return {
           siteId,
           city: row.city.trim(),
@@ -112,8 +86,6 @@ class CSVValidator {
           timestamp
         };
       });
-
-      // Delete temp file
       this.deleteFile(filePath);
       
       return transformedData;
